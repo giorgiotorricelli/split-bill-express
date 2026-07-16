@@ -2,14 +2,17 @@ import connection from "../db/connection.js";
 import { allUsers } from "../queries/userQuery.js";
 
 async function index(request, response) {
-    console.log('ciao');
     
     try {
-        const [userList] = await connection.query(allUsers);
+        const [userListRaw] = await connection.query(allUsers);
+
+        const cleanList = userListRaw.map(user => {
+            return {name: user.name}
+        })
 
         response.status(202).json({
             error: null,
-            result: userList
+            result: cleanList
         })
     } catch (error) {
         response.status(500).json({
@@ -17,6 +20,10 @@ async function index(request, response) {
             result: null
         })
     }
+    
+}
+
+async function show(request, response) {
     
 }
 
