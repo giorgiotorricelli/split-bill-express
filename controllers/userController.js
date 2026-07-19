@@ -23,8 +23,4 @@ async function index(request, response) {
     
 }
 
-async function show(request, response) {
-    
-}
-
 export { index };
