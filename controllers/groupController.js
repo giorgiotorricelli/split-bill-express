@@ -50,7 +50,9 @@ async function create(request, response) {
         const slug = request.slug; 
         let { owner_id, name } = request.body;
 
-        const creation = await connection.query(createGroup, [newGroupId, name, slug, owner_id]);
+        const groupCreation = await connection.query(createGroup, [newGroupId, name, slug, owner_id]);
+        //per aggiungere l'owner_id alla tabella user_group
+        const user_group_creation = await connection.query("INSERT INTO `user_group` (`user_id`, `group_id`) VALUES (?, ?);", [owner_id, newGroupId]);
 
         response.status(201).json({
             error: null,
