@@ -17,6 +17,7 @@ export async function checkUserId(request, response, next) {
             });
             return;
         } else {
+            request.idList = idList;
             next();
         }
         

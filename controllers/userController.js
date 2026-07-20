@@ -3,6 +3,7 @@ import { allUsers } from "../queries/userQuery.js";
 
 async function index(request, response) {
     
+
     try {
         const [userListRaw] = await connection.query(allUsers);
 

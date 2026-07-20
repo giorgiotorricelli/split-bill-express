@@ -13,7 +13,6 @@ export async function checkBiggerId(request, response, next) {
             }
         });
         request.biggerId = biggerId + 1;
-        console.log(request.biggerId);
         
         next();
     } catch (error) {

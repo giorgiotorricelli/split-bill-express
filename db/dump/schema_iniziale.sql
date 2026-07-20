@@ -45,3 +45,5 @@ ALTER TABLE
     `groups` ADD CONSTRAINT `groups_owner_id_foreign` FOREIGN KEY(`owner_id`) REFERENCES `users`(`id`);
 ALTER TABLE
     `expenses` ADD CONSTRAINT `expenses_paid_by_foreign` FOREIGN KEY(`paid_by`) REFERENCES `users`(`id`);
+
+SHOW CREATE TABLE groups;

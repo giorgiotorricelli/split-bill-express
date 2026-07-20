@@ -7,7 +7,6 @@ export async function checkSlugs(request, response, next) {
     
     try {
         const [slugList] = await connection.query(findGroupSlugs);
-        console.log(slugList);
 
         const { name } = request.body;
 
@@ -24,6 +23,7 @@ export async function checkSlugs(request, response, next) {
         } 
 
         slug = tempSlug;
+        
         request.slug = slug;
         next();
 
