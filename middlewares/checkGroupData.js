@@ -20,8 +20,6 @@ export async function checkGroupData(request, response, next) {
             return;
         };
 
-        console.log(members.length);
-
         if (members.length > 0) { //caso in cui siano inseriti dei membri
             const someNotInt = members.some(member => {
                 return !Number.isInteger(member); //caso in cui il numero non sia un intero

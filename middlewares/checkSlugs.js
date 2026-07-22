@@ -7,6 +7,7 @@ export async function checkSlugs(request, response, next) {
     
     try {
         const [slugList] = await connection.query(findGroupSlugs);
+        
 
         const { name } = request.body;
 
@@ -31,6 +32,6 @@ export async function checkSlugs(request, response, next) {
         response.status(500).json({
             error: `Errore nella connessione al server o al database: ${error}`,
             result: null
-        })
+        });
     }
 }

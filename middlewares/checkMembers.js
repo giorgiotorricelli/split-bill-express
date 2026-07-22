@@ -4,7 +4,6 @@ export async function checkMembers(request, response, next) {
     try {
         const { members } = request.body; // array di interi
         const idList = request.idList; //array di oggetti {id: 1}
-        console.log(members.constructor === Array);
 
         if (members.length === 0) return next();
 

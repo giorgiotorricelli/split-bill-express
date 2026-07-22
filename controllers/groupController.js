@@ -1,5 +1,5 @@
 import connection from "../db/connection.js";
-import { allGroups, singleGroup, createGroup, addingMembers } from "../queries/groupQuery.js";
+import { allGroups, singleGroup, createGroup, addingMembers, deleteGroup, deleteUserGroup } from "../queries/groupQuery.js";
 import { generateSlug } from "../utils/generateSlug.js";
 
 async function index(request, response) {
@@ -92,4 +92,22 @@ async function create(request, response) {
 
 }
 
-export { index, show, create }
+async function destroy(request, response) {
+    try {
+        const idForDelete = request.idForDelete;
+        const userGroupDel = await connection.query(deleteUserGroup, [idForDelete]);
+        const groupDel = await connection.query(deleteGroup, [idForDelete]);
+        response.status(201).json({
+            error: `Gruppo eliminato con successo`
+        });
+        
+    } catch (error) {
+        response.status(500).json({
+            error: `Errore nella connessione al server o al database: ${error}`,
+            result: null
+        });
+    }
+    
+}
+
+export { index, show, create, destroy }
